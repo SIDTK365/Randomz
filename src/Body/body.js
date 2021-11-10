@@ -12,7 +12,10 @@ require('dotenv').config()
 const URL = 'https://meme-api.herokuapp.com/gimme';
 var temp_string = '';
 var CURRENT_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
-// var hangoutButton = document.getElementById("hangoutButtonId");
+
+function helper(){
+    document.getElementById("hangoutButtonId").click();
+}
 
 function Header2() {
     function getVal(val) {
@@ -22,10 +25,12 @@ function Header2() {
     function assignVal() {
         CURRENT_URL = URL + '/' + temp_string;
         temp_string = '';
+        helper();
     }
 
     function resetVal() {
         CURRENT_URL = URL;
+        helper();
     }
 
     const [isOpen, setIsOpen] = useState(false);
