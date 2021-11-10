@@ -10,7 +10,7 @@ function Footer() {
                     <div class="flex flex-wrap items-center md:justify-between justify-center">
                         <div class="w-full md:w-4/12 px-4 mx-auto text-center">
                             <div class="text-sm text-gray-400 font-semibold py-1">
-                                Made with <span className="px-0.5"> ❤️ </span> by
+                                Made with <span className="px-0.5 text-xl"><div className="heart-logo"> ❤️ </div></span> by
                                 <a href="https://sid-pm.herokuapp.com/" class="text-gray-300 hover:text-white" rel="noreferrer" target="_blank"> Siddharth Singh</a>.
                             </div>
                         </div>
