@@ -12,6 +12,7 @@ require('dotenv').config()
 const URL = 'https://meme-api.herokuapp.com/gimme';
 var temp_string = '';
 var CURRENT_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
+// var hangoutButton = document.getElementById("hangoutButtonId");
 
 function Header2() {
     function getVal(val) {
@@ -209,7 +210,7 @@ class App extends React.Component {
 
                     <img class="w-full bg-cover" src={this.state.url} alt="meme_image" />
 
-                    <button class="px-3 mt-3 w-full h-12 px-6 text-base font-semibold text-indigo-100 transition-colors duration-150 bg-purple-600 rounded-lg focus:shadow-outline hover:bg-purple-700" onClick={this.fetchAdvice}>Generate Meme</button>
+                    <button id="hangoutButtonId" class="px-3 mt-3 w-full h-12 px-6 text-base font-semibold text-indigo-100 transition-colors duration-150 bg-purple-600 rounded-lg focus:shadow-outline hover:bg-purple-700" onClick={this.fetchAdvice}>Generate Meme</button>
                 </div>
             </div>
         </div>
