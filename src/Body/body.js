@@ -11,6 +11,7 @@ require('dotenv').config()
 
 // var URL = 'https://meme-api.herokuapp.com/gimme';
 const URL = 'https://meme-api.herokuapp.com/gimme';
+var temp_string = '';
 var CURRENT_URL = URL;
 
 function Header2() {
@@ -136,7 +137,7 @@ class App extends React.Component {
         subreddit: '',
         url: '',
         author: '',
-        redirect: '/'
+        redirect: ''
     };
 
     componentDidMount() {
