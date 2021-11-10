@@ -7,14 +7,29 @@ import { Transition } from "@headlessui/react";
 import './body.css';
 import axios from 'axios';
 require('dotenv').config()
-// import Component from './component';
 
-// var URL = 'https://meme-api.herokuapp.com/gimme';
+
 const URL = 'https://meme-api.herokuapp.com/gimme';
 var temp_string = '';
-var CURRENT_URL = URL;
+var CURRENT_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
 
 function Header2() {
+    function getVal(val) {
+        temp_string = String(val.target.value);
+        // console.log(val.target.value);
+        // console.log(CURRENT_URL);
+    }
+
+    function assignVal() {
+        CURRENT_URL = URL + '/' + temp_string;
+        // console.log(CURRENT_URL);
+        temp_string = '';
+    }
+
+    function resetVal() {
+        CURRENT_URL = URL;
+    }
+
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div>
@@ -38,14 +53,14 @@ function Header2() {
                             <div class="p-2 flex">
                                 <form class="flex flex-col md:flex-row w-3/4 md:w-full max-w-sm md:space-x-3 space-y-3 md:space-y-0 justify-center">
                                     <div class=" relative ">
-                                        <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-gray-400 bg-gray-800 flex-1 appearance-none border w-full py-2 px-4 bg-white text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Search subreddit r/" autocomplete="off" />
+                                        <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-gray-400 bg-gray-800 flex-1 appearance-none border w-full py-2 px-4 bg-white text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Search subreddit r/" onChange={getVal} autocomplete="off" />
                                     </div>
-                                    <button class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit">
+                                    <div class="button-point flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit" onClick={assignVal}>
                                         Search
-                                    </button>
-                                    <button class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit">
+                                    </div>
+                                    <div class="button-point flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit" onClick={resetVal}>
                                         Reset
-                                    </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -111,14 +126,14 @@ function Header2() {
                                 <div class="px-2 py-6 flex justify-center">
                                     <form class="flex flex-col md:flex-row w-3/4 md:w-full max-w-sm md:space-x-3 space-y-3 md:space-y-0 justify-center">
                                         <div class=" relative ">
-                                            <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 bg-gray-800 w-full py-2 px-4 text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Search subreddit r/" autocomplete="off" />
+                                            <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 bg-gray-800 w-full py-2 px-4 text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Search subreddit r/" onChange={getVal} autocomplete="off" />
                                         </div>
-                                        <button class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit">
+                                        <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { assignVal(); setIsOpen(!isOpen);}} type="submit">
                                             Search
-                                        </button>
-                                        <button class="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit">
+                                        </div>
+                                        <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { resetVal(); setIsOpen(!isOpen);}} type="submit">
                                             Reset
-                                        </button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -147,10 +162,10 @@ class App extends React.Component {
     fetchAdvice = () => {
         // https://meme-api.herokuapp.com/gimme
         // https://api.adviceslip.com/advice
-        axios.get(URL)
+        axios.get(CURRENT_URL)
             .then((response) => {
                 // process.env.REACT_APP_REDIRECT_URL+='/SaimanSays';
-                console.log(CURRENT_URL);
+                // console.log(CURRENT_URL);
                 const reddit_info = response.data;
                 this.setState({ title: reddit_info.title, url: reddit_info.url, author: 'u/' + reddit_info.author, subreddit: 'r/' + reddit_info.subreddit, postLink: reddit_info.postLink });
             })
@@ -158,16 +173,16 @@ class App extends React.Component {
                 console.log(error);
             })
     }
-    
+
     render() {
         return <div>
-            <Header2/>
+            <Header2 />
             <div className="font-bold grid place-items-center ">
                 <div class="bg-gray-900 border border-gray-500 shadow-lg  rounded-3xl p-4 m-4 rounded overflow-hidden border w-full lg:w-6/12 md:w-6/12 bg-white mx-3 md:mx-0 lg:mx-0">
 
                     <h2 class="px-3 my-2 sm:text-3xl text-2xl title-font font-extrabold text-gray-200">{this.state.title}</h2>
-                    
-                    
+
+
                     <div class="px-3 mt-3 text-gray-400">
                         <div class="mb-1 pt-2">
                             <div class="mb-2 text-indigo-500">

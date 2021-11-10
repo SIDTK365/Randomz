@@ -4,3 +4,11 @@
 .alignright {
 	float: right;
 }
+
+.button-point{
+	cursor: pointer;
+}
+
+.button-point:hover{
+	cursor: pointer;
+}
