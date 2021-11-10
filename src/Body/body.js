@@ -16,13 +16,10 @@ var CURRENT_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
 function Header2() {
     function getVal(val) {
         temp_string = String(val.target.value);
-        // console.log(val.target.value);
-        // console.log(CURRENT_URL);
     }
 
     function assignVal() {
         CURRENT_URL = URL + '/' + temp_string;
-        // console.log(CURRENT_URL);
         temp_string = '';
     }
 
@@ -53,7 +50,7 @@ function Header2() {
                             <div class="p-2 flex">
                                 <form class="flex flex-col md:flex-row w-3/4 md:w-full max-w-sm md:space-x-3 space-y-3 md:space-y-0 justify-center">
                                     <div class=" relative ">
-                                        <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-gray-400 bg-gray-800 flex-1 appearance-none border w-full py-2 px-4 bg-white text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Search subreddit r/" onChange={getVal} autocomplete="off" />
+                                        <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-gray-400 bg-gray-800 flex-1 appearance-none border w-full py-2 px-4 bg-white text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Specify Subreddit r/" onChange={getVal} autocomplete="off" />
                                     </div>
                                     <div class="button-point flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" type="submit" onClick={assignVal}>
                                         Search
@@ -128,10 +125,10 @@ function Header2() {
                                         <div class=" relative ">
                                             <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 bg-gray-800 w-full py-2 px-4 text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Search subreddit r/" onChange={getVal} autocomplete="off" />
                                         </div>
-                                        <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { assignVal(); setIsOpen(!isOpen);}} type="submit">
+                                        <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { assignVal(); setIsOpen(!isOpen); }} type="submit">
                                             Search
                                         </div>
-                                        <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { resetVal(); setIsOpen(!isOpen);}} type="submit">
+                                        <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { resetVal(); setIsOpen(!isOpen); }} type="submit">
                                             Reset
                                         </div>
                                     </form>
@@ -177,22 +174,22 @@ class App extends React.Component {
     render() {
         return <div>
             <Header2 />
-            <div className="font-bold grid place-items-center ">
+            <div className="mt-10 font-bold grid place-items-center ">
                 <div class="bg-gray-900 border border-gray-500 shadow-lg  rounded-3xl p-4 m-4 rounded overflow-hidden border w-full lg:w-6/12 md:w-6/12 bg-white mx-3 md:mx-0 lg:mx-0">
 
-                    <h2 class="px-3 my-2 sm:text-3xl text-2xl title-font font-extrabold text-gray-200">{this.state.title}</h2>
+                    <h2 class="px-3 py-2 sm:text-3xl text-2xl title-font font-extrabold text-gray-200">{this.state.title}</h2>
 
 
-                    <div class="px-3 mt-3 text-gray-400">
-                        <div class="mb-1 pt-2">
-                            <div class="mb-2 text-indigo-500">
+                    <div class="px-3 text-gray-400">
+                        <div class="pt-2">
+                            <div class="text-indigo-500">
                                 {/* <span class="font-medium mr-2">URL</span> */}
                                 <span class="text-indigo-500 text-sm mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-400">
                                     <svg class="w-4 h-4 mr-2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" data-darkreader-inline-stroke="">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
-                                    <a href={this.state.postLink} target="_blank" rel="noreferrer">
+                                    <a href={this.state.postLink} target="_blank" rel="noreferrer" className="text-base">
                                         {this.state.postLink}
                                     </a>
                                 </span>
@@ -201,11 +198,10 @@ class App extends React.Component {
                     </div>
 
 
-                    <div class="flow-root px-3 py-3 mb-2">
+                    <div class="flow-root px-3 py-4">
                         <p class="float-left text-gray-400">
                             {this.state.author}
                         </p>
-
                         <p class="float-right text-gray-400">
                             {this.state.subreddit}
                         </p>
