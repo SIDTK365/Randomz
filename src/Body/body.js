@@ -12,8 +12,9 @@ require('dotenv').config()
 const URL = 'https://meme-api.herokuapp.com/gimme';
 var temp_string = '';
 var CURRENT_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
+const BACKUP_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
 
-function helper(){
+function helper() {
     document.getElementById("hangoutButtonId").click();
 }
 
@@ -132,10 +133,10 @@ function Header2() {
                                             <input type="text" id="&quot;form-subscribe-Search" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 bg-gray-800 w-full py-2 px-4 text-gray-200 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Subreddit without r/" onChange={getVal} autocomplete="off" />
                                         </div>
                                         <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { assignVal(); setIsOpen(!isOpen); }} type="submit">
-                                        Search Subreddit
+                                            Search Subreddit
                                         </div>
                                         <div class="text-center flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200" onClick={() => { resetVal(); setIsOpen(!isOpen); }} type="submit">
-                                        Random Memes
+                                            Random Memes
                                         </div>
                                     </form>
                                 </div>
@@ -155,7 +156,7 @@ class App extends React.Component {
         subreddit: '',
         url: '',
         author: '',
-        redirect: ''
+        redirect: '',
     };
 
     componentDidMount() {
@@ -173,7 +174,12 @@ class App extends React.Component {
                 this.setState({ title: reddit_info.title, url: reddit_info.url, author: 'u/' + reddit_info.author, subreddit: 'r/' + reddit_info.subreddit, postLink: reddit_info.postLink });
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
+                if (error.response) {
+                    alert(error.response.data.message);
+                    // console.log(error.response.status);
+                    // console.log(error.response.headers);
+                }
             })
     }
 
@@ -215,7 +221,7 @@ class App extends React.Component {
 
                     <img class="w-full bg-cover" src={this.state.url} alt="meme_image" />
 
-                    <button id="hangoutButtonId" class="px-3 mt-3 w-full h-12 px-6 text-base font-semibold text-indigo-100 transition-colors duration-150 bg-purple-600 rounded-lg focus:shadow-outline hover:bg-purple-700" onClick={this.fetchAdvice}>Generate Meme</button>
+                    <button id="hangoutButtonId" class="px-3 mt-3 w-full h-12 px-6 text-base font-semibold text-indigo-100 transition-colors duration-150 bg-purple-600 rounded-lg focus:shadow-outline hover:bg-purple-700" onClick={this.fetchAdvice}>Generate Post</button>
                 </div>
             </div>
         </div>
