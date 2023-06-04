@@ -9,10 +9,10 @@ import axios from 'axios';
 require('dotenv').config()
 
 
-const URL = 'https://meme-api.herokuapp.com/gimme';
+const URL = 'https://meme-api.com/gimme';
 var temp_string = '';
-var CURRENT_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
-const BACKUP_URL = 'https://meme-api.herokuapp.com/gimme/wholesomememes';
+var CURRENT_URL = 'https://meme-api.com/gimme/cleanmemes';
+const BACKUP_URL = 'https://meme-api.com/gimme/wholesomememes';
 
 function helper() {
     document.getElementById("hangoutButtonId").click();
